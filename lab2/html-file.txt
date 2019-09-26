@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>First website:))</title>
+</head>
+<body>
+	<h1 size="7">Hello everyone) It is my first website! My name is Alina!:)</h1>
+	<h2>I am a system analyst.</h2>
+	<h3>I am a student.</h3>
+	<h4>NULP - National University "Lviv Polytechnic"</h4>
+	<h5>I am fun :)</h5>
+	<h6>Happy New Year!</h6>
+	<p>I love <b>programming!</b></p>
+	<p>I love <i>watching movies!</i></p>
+	<p><em>italic</em></p>
+	<p><u>underline</u></p>
+	<p><strike>strike</strike></p>
+	<p><s>strike too</s></p>
+</body>
+</html>
