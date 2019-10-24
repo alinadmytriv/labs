@@ -10,15 +10,18 @@ class Customer:
         self.name = name
         self.mobile = mobile
 
-class GetCustomer(Customer):
-    """
-    Get details about the customer.
-    """
     def get_name(self):
         return self.name
 
     def get_mobile(self):
         return self.mobile
+
+class Purchase(Customer):
+    """
+    Get customer and his purchase
+    """
+    def buy(self, purchase):
+        return purchase
 
 def customers():
     """
@@ -26,8 +29,8 @@ def customers():
     output his name and mobiles
     """
     c1 = Customer("Katya", "0678543289")
-    db1 = GetCustomer(c1.name, c1.mobile)
-    print(db1.get_name() + " " + db1.get_mobile())
+    db1 = Purchase(c1.name, c1.mobile)
+    print(db1.name + " buys " + db1.buy("a book"))
 
 # --------------------------------------------------------------------------------------------
 # OCP - Open-Closed Principle
@@ -67,8 +70,12 @@ class Plants:
     """
     create a plant
     """
-    def __init__(self, name):
+    def __init__(self, name, width=0, length=0, height=0, radius=0):
         self.name = name
+        self.width = width
+        self.height = height
+        self.length = length
+        self.radius = radius
 
     def get_name(self):
         return self.name
@@ -77,28 +84,28 @@ class Flowerpot(Plants):
     """
     methods for houseplants - volume of their pots
     """
-    def rectangular_pot_shape(self, width, length, height):
-        return width*length*height
+    def rectangular_pot_shape(self):
+        return self.width*self.length*self.height
 
-    def round_pot_shape(self, height, radius):
-        return pi*(radius**2)*height
+    def round_pot_shape(self):
+        return pi*(self.radius**2)*self.height
 
 class CultivatedPlants(Plants):
     """
     methods for cultivated plants - volume of their pit
     """
-    def pit_shape(self, radius, height):
-        return pi*(radius**2)*height
+    def pit_shape(self):
+        return pi*(self.radius**2)*self.height
 
 def plants():
     """
     the function which create the plants
     and find for them the shape of their pot/pits
     """
-    f1 = Flowerpot("violet")
-    f2 = CultivatedPlants("bush")
-    print("Name - " + str(f1.name) + " Shape of the pot - " + str(f1.rectangular_pot_shape(2, 3, 4)))
-    print("Name - " + str(f2.name) + " Shape of the pit - " + str(f2.pit_shape(2, 3)))
+    f1 = Flowerpot("violet", 2, 3, 4)
+    f2 = CultivatedPlants("bush", 0, 0, 2, 3)
+    print("Name - " + str(f1.name) + " Shape of the pot - " + str(f1.rectangular_pot_shape()))
+    print("Name - " + str(f2.name) + " Shape of the pit - " + str(f2.pit_shape()))
 
 
 # --------------------------------------------------------------------------------------------
@@ -108,7 +115,7 @@ class Shape:
     class that has the method - draw() for all different shapes
     """
     def draw(self):
-        raise NotImplementedError
+        pass
 
 class Circle(Shape):
     """
