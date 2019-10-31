@@ -1,26 +1,26 @@
-"""Dependency inversion
-Rose & Chamomile inherit Flower
-function flower_color has Rose & Chamomile"""
-class Flower:
-    def color(self):
-        pass
+class Book:
+    def __init__(self, name, author):
+        self.name = name
+        self.author = author
 
-class Chamomile(Flower):
-    def color(self):
-        return "white"
+    def getName(self):
+        return self.name
 
-class Rose(Flower):
-    def color(self):
-        return "red"
+    def getAuthor(self):
+        return self.author
 
-def flower_color(flower):
-    print(flower.color())
 
-def main():
-    f1 = Rose()
-    f2 = Chamomile()
-    flower_color(f1)
-    flower_color(f2)
+class Library:
+    def __init__(self, name, book):
+        self.name = name
+        self.book = book
+
+    def addBook(self):
+        print(f"Book \"{self.book.getName()}\" add to library \"{self.name}\"")
+
 
 if __name__ == '__main__':
-    main()
+    book = Book("Romeo & Juliet", "William Shakespeare")
+    print(f"Book - {book.getName()}")
+    library = Library("Stefanyk National Science Library", book)
+    library.addBook()
