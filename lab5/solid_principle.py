@@ -10,16 +10,20 @@ class Customer:
         self.name = name
         self.mobile = mobile
 
+    @property
     def get_name(self):
         return self.name
 
     def get_mobile(self):
         return self.mobile
 
-class Purchase(Customer):
+class Purchase:
     """
     Get customer and his purchase
     """
+    def __init__(self, Customer):
+        self.Customer = Customer
+
     def buy(self, purchase):
         return purchase
 
@@ -29,8 +33,8 @@ def customers():
     output his name and mobiles
     """
     c1 = Customer("Katya", "0678543289")
-    db1 = Purchase(c1.name, c1.mobile)
-    print(db1.name + " buys " + db1.buy("a book"))
+    db1 = Purchase(c1)
+    print(db1.Customer.name + " buys " + db1.buy("a book"))
 
 # --------------------------------------------------------------------------------------------
 # OCP - Open-Closed Principle
@@ -48,7 +52,7 @@ class Discount:
     def get_discount(self):
         return self.price * 0.2
 
-class VIPcustomer(Discount):
+class VIPdiscount(Discount):
     """
     to extend the method get_discount() from class Discount
     for VIP-customer to increase the discount by 2 times
@@ -61,7 +65,7 @@ def discounts():
     the function which create a vip-customer &
     output this customer and his discount
     """
-    d1 = VIPcustomer("customer2", 1000)
+    d1 = VIPdiscount("customer2", 1000)
     print(d1.get_customer() + " - " + str(d1.get_discount()))
 
 # --------------------------------------------------------------------------------------------
