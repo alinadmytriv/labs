@@ -2,14 +2,14 @@ import os, hashlib
 
 # function which change file values into 128 bit hash value
 # then for checking the duplicates
-def hashfile(path):
+def hashfile(path, size=4500):
     with open(path, 'rb') as f:
         hasher = hashlib.md5()
-        file = f.read()
+        file = f.read(size)
         while len(file) > 0:
             # changing into 128 bit hash value
             hasher.update(file)
-            file = f.read()
+            file = f.read(size)
     return hasher.hexdigest()
 
 # function which create a dictionary with file path and the file entity of hash value
