@@ -10,35 +10,27 @@ def download_url_file(url0):
         return file_info
 
 def words_stats(file):
-    dict = {}
+    dictionary = {}
+    count = 0
     for line in file:
-        # remove the leading spaces and newlines characters
-        # convert the characters in line to lowercase to avoid case mismatch
-        # split the line into words
         line = line.strip().lower().split(" ")
         for word in line:
-            if word in dict:
-                # increment count of word by 1
-                dict[word] += 1
+            if word in dictionary:
+                dictionary[word] += 1
+                count += 1
             else:
-                # add the word to dictionary with count 1
-                dict[word] = 1
-    return dict
-
-def words_count(dict):
-    count = 0
-    for y in dict.keys():
-        count += dict[y]
-    return count
+                dictionary[word] = 1
+                count += 1
+    return dictionary, count
 
 def main():
     url = input("Enter the url file: ")
-    print("Статистика слів:")
-    dict = words_stats(download_url_file(url))
-    for y in dict.keys():
-        print(f"{y} : {dict[y]}")
-    count = words_count(dict)
-    print(f"Кількість слів - {count}")
+    print("Word statistics:")
+    dictionary = words_stats(download_url_file(url))[0]
+    for y in dictionary.keys():
+        print(f"{y} : {dictionary[y]}")
+    count = words_stats(download_url_file(url))[1]
+    print(f"The number of words - {count}")
 
 if __name__ == '__main__':
     main()
